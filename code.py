@@ -3,7 +3,7 @@
 
 import logging
 import web
-from handlers import Index, Transform, Monitor
+from handlers import Index, Transform, Monitor, notfound
 
 render = web.template.render('templates')
 
@@ -18,5 +18,6 @@ app = web.application(urls, globals())
 
 if __name__ == '__main__':
     logging.basicConfig(filename="server.log", level=logging.DEBUG)
+    app.notfound = notfound
     app.run()
 

@@ -40,3 +40,6 @@ class Monitor:
         return render.monitor(task_id, result.status, url)
             
 
+#custom notfound
+def notfound():
+    return web.notfound(render.notfound())
