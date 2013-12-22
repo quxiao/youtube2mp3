@@ -30,7 +30,13 @@ class Monitor:
             pass
 
         result = transform_task.AsyncResult(task_id)
-        return result.status
-        celery_inspect = celery_app.control.inspect()
-        return celery_inspect.active()
+        if result.status != 'SUCCESS':
+            url = ''
+        else:
+            url = result.get()
+            url = '<a href="%s">%s</a>' % (url, url)
+
+        logging.debug('%s, %s, %s', task_id, result.status, url)
+        return render.monitor(task_id, result.status, url)
+            
 
