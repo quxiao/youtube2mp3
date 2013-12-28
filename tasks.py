@@ -17,10 +17,17 @@ celery_app = Celery('youtube2mp3_proj',
 def transform_task(self, youtube_url):
     #get title
     self.update_state(state='Getting Title')
-    proc = subprocess.Popen('youtube-dl --get-title %s' % (youtube_url), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, cwd=DOWNLOAD_DIR, shell=True)
+    proc = subprocess.Popen('youtube-dl --get-id %s' % (youtube_url), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, cwd=DOWNLOAD_DIR, shell=True)
     if proc.wait() != 0:
         return 'Cannot get title. Error!'
     title = proc.stdout.read()
+    #get filename
+    if len(title) == 0:
+        self.update_state(state='Getting File Name')
+        proc = subprocess.Popen('youtube-dl --get-filename %s' % (youtube_url), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, cwd=DOWNLOAD_DIR, shell=True)
+        if proc.wait() != 0:
+            return 'Cannot get filename. Error!'
+        title = proc.stdout.read()
     print title
 
     #download and convert
