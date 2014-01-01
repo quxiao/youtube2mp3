@@ -10,21 +10,23 @@
         <script src="static/js/bootstrap.min.js"></script>
 
         <div class="page-header">
-            <h1>Youtube2MP3</h1>
+            <h1 class="text-center">Youtube2MP3</h1>
         </div>
+        <div class="container">
         <form action="/transform" method="post" class="form-horizontal" role="form">
             <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">Youtbe URL</label>
+                <label class="col-sm-2 control-label">Youtbe URL</label>
                 <div class="col-sm-10">
-                    <input type="email" class="form-control" name="url" placeholder="Email">
+                    <input type="text" class="form-control" name="url">
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <input type="submit" class="btn btn-default">
+                    <input type="submit" class="btn btn-primary" value="Convert">
                 </div>
             </div>
         </form>
+        </div>
     </body>
 
 </html>
